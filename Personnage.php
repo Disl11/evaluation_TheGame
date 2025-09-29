@@ -21,6 +21,11 @@ class Personnage
 
     public function attaquer($cible)
     {
-        echo $this->nom . " Attaque " . $cible->nom . "<br>";
+        echo $this->nom . 
+        " qui est un " . $this->espece .  
+        " Attaque " . $cible->nom . 
+        " qui est un " . $cible->espece. "<br>";
+
+        $cible->pv = $cible->pv - $this->force;
     }
 }

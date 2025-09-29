@@ -3,19 +3,36 @@ require_once "Personnage.php";
 require_once "Humain.php";
 require_once "Orc.php";
 require_once "Elfe.php";
+require_once "GameEngine.php";
 
 
-$humain1 = new Humain("Elodie");
-$humain2 = new Humain("Jordan");
 
-echo $humain1->attaquer($humain2);
 
-$orc1 = new Humain("valentin");
-$orc2 = new Humain("pierre");
+$game = new GameEngine();
 
-echo $orc1->attaquer($orc2);
+$game->addCombattant($orc1 = new Orc("Jordan"));
+$game->addCombattant($humain1 = new Humain("Pierre"));
 
-$Elfe1 = new Elfe("Nico");
-$Elfe2 = new Elfe("damien");
+$game->start();
 
-echo $Elfe1->attaquer($humain1);
+
+
+
+
+
+
+//======== Test affichage des different personnage ========
+// $humain1 = new Humain("Elodie");
+// $humain2 = new Humain("Jordan");
+
+// echo $humain1->attaquer($humain2);
+
+// $orc1 = new Humain("valentin");
+// $orc2 = new Humain("pierre");
+
+// echo $orc1->attaquer($orc2);
+
+// $Elfe1 = new Elfe("Nico");
+// $Elfe2 = new Elfe("damien");
+
+// echo $Elfe1->attaquer($humain1);
