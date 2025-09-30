@@ -10,8 +10,9 @@ require_once "GameEngine.php";
 
 $game = new GameEngine();
 
-$game->addCombattant($orc1 = new Orc("Jordan"));
+$game->addCombattant($elfe1 = new Elfe("Chloe"));
 $game->addCombattant($humain1 = new Humain("Pierre"));
+$game->addCombattant($orc1 = new Orc("Nicolas"));
 
 $game->start();
 

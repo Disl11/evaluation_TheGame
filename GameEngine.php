@@ -44,35 +44,44 @@ class GameEngine
 
         echo "Tour " . $this->tour . " : <br>";
 
-        $attaquant = $this->domeDuTonnere[0];
-        $cible = $this->domeDuTonnere[1];
-        $attaquant->attaquer($cible);
+        //================ function tourDeJeu uniquement pour 1 vs 1 =============================
+        // $attaquant = $this->domeDuTonnere[0];
+        // $cible = $this->domeDuTonnere[1];
+        // $attaquant->attaquer($cible);
 
-        echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
-            . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
+        // echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
+        //     . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
 
-        if ($this->fin()) return;
+        // if ($this->fin()) return;
 
-        $attaquant = $this->domeDuTonnere[1];
-        $cible = $this->domeDuTonnere[0];
-        $attaquant->attaquer($cible);
+        // $attaquant = $this->domeDuTonnere[1];
+        // $cible = $this->domeDuTonnere[0];
+        // $attaquant->attaquer($cible);
 
-        echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
-            . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
+        // echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
+        //     . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
     }
 
+
+    public function nettoyerMort(): void
+    {
+        // elever un mort de l'arene  
+        foreach ($this->domeDuTonnere as $key => $warrior) {
+            if ($warrior->getPv() <= 0) {
+                echo $warrior->getNom() . " est eliminé de l'aréne ! <br>";
+                unset($this->domeDuTonnere[$key]);
+            }
+        }
+    }
 
     public function fin(): bool
     {
         // retourne vrai si le combat et fini
-
-        foreach ($this->domeDuTonnere as $warrior) {
-            if ($warrior->getPv() <= 0) {
-                return true;
-            }
-        }
-        return false;
+        $this->nettoyerMort();
+        return count($this->domeDuTonnere) <= 1;
     }
+
+
 
 
     public function getId()
@@ -83,9 +92,5 @@ class GameEngine
     public function getJoueur()
     {
         // retourner un joueur par son id 
-    }
-    public function nettoyerMort()
-    {
-        // elever un mort de l'arene si il y na un mort 
     }
 }
