@@ -3,14 +3,14 @@
 class Personnage
 {
 
-    public string $nom;
-    public string $espece;
-    public int $force;
-    public int $pv;
-    public int $endurance;
+    private string $nom;
+    private string $espece;
+    private  int $force;
+    private  int $pv;
+    private  int $endurance;
 
 
-    public function __construct(string $nom = "No Name", string $espece = "inconnu", int $force = 50, int $pv = 100, int $endurance = 50)
+    public function __construct(string $nom = "No Name", string $espece = "inconnu", int $force = 10, int $pv = 100, int $endurance = 10)
     {
         $this->nom = $nom;
         $this->espece = $espece;
@@ -19,13 +19,37 @@ class Personnage
         $this->endurance = $endurance;
     }
 
+    //getter 
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    public function getEspece()
+    {
+        return $this->espece;
+    }
+    public function getForce()
+    {
+        return $this->force;
+    }
+    public function getPv()
+    {
+        return $this->pv;
+    }
+    public function getEndurance()
+    {
+        return $this->endurance;
+    }
+
+
+    //seter 
+    public function setPv(int $pv): void
+    {
+        $this->pv = max(0, $pv); // pv reste a 0 meme si l'attaque est plus puissante 
+    }
+
     public function attaquer($cible)
     {
-        echo $this->nom . 
-        " qui est un " . $this->espece .  
-        " Attaque " . $cible->nom . 
-        " qui est un " . $cible->espece. "<br>";
-
-        $cible->pv = $cible->pv - $this->force;
+        $cible->setPV($cible->getPv() - $this->force);
     }
 }
