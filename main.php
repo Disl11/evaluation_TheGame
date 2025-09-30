@@ -1,5 +1,6 @@
 <?php
 
+require_once "GameEngine.php";
 require_once "Personnage.php";
 require_once "Humain.php";
 require_once "Orc.php";

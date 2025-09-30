@@ -8,12 +8,12 @@ class GameEngine
 
     public function addCombattant(Personnage $p): void
     {
-        
-        
+
+
         $this->domeDuTonnere[] = $p;
-        
-        
-        
+
+
+
         //ajouter un combattant max 2 combattant
         // if (count($this->domeDuTonnere) < 2) {
         //     $this->domeDuTonnere[] = $p;
@@ -42,49 +42,46 @@ class GameEngine
         echo "Tour " . $this->tour . " : <br>";
 
 
-        // $attaquantDuTour = [];
+        $attaquantDuTour = [];
 
-        
-        // foreach ($this->domeDuTonnere as $attaquant){
 
-        //     if(in_array($attaquant,$attaquantDuTour,true))
-        //     continue;
+        foreach ($this->domeDuTonnere as $attaquant) {
 
-        //     $ciblePossible = array_filter($this->domeDuTonnere, function($p) use ($attaquant){
-        //         return $p !== $attaquant;
-        //     });
+            if (in_array($attaquant, $attaquantDuTour, true))
+                continue;
 
-        //     if(empty($ciblePossible)) break;
-            
-        //     $cible = $ciblePossible[array_rand($ciblePossible)];
+            $ciblePossible = array_filter($this->domeDuTonnere, function ($p) use ($attaquant) {
+                return $p !== $attaquant;
+            });
 
-        //     $attaquant->attaquer($cible);
-        //     echo $attaquant->getNom() . " attaque ". 
-        //     $cible->getNom() . " <br> Point de vie restant : " . $cible->getPv(). "<br>";
+            if (empty($ciblePossible)) break;
 
-        //     $attaquantDuTour[] = $attaquant;
-        // }
+            $cible = $ciblePossible[array_rand($ciblePossible)];
 
-        //  $this->nettoyerMort();
+            $attaquant->attaquer($cible);
 
-        // echo "<br>";
+            $attaquantDuTour[] = $attaquant;
+        }
+
+        $this->nettoyerMort();
+
 
         // ================ function tourDeJeu uniquement pour 1 vs 1 =============================
-        $attaquant = $this->domeDuTonnere[0];
-        $cible = $this->domeDuTonnere[1];
-        $attaquant->attaquer($cible);
+        // $attaquant = $this->domeDuTonnere[0];
+        // $cible = $this->domeDuTonnere[1];
+        // $attaquant->attaquer($cible);
 
-        echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
-            . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
+        // echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
+        //     . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
 
-        if ($this->fin()) return;
+        // if ($this->fin()) return;
 
-        $attaquant = $this->domeDuTonnere[1];
-        $cible = $this->domeDuTonnere[0];
-        $attaquant->attaquer($cible);
+        // $attaquant = $this->domeDuTonnere[1];
+        // $cible = $this->domeDuTonnere[0];
+        // $attaquant->attaquer($cible);
 
-        echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
-            . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
+        // echo $attaquant->getNom() . " attaque " . $cible->getNom() . "<br>"
+        //     . " Point de vie restant de " . $cible->getNom() . " : " . $cible->getPv() . " <br><br>";
     }
 
 

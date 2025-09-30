@@ -52,6 +52,6 @@ class Personnage
     {
         $cible->setPv($cible->getPv() - $this->force);
         echo $this->nom . " attaque " . $cible->getNom() . " et inflige " . $this->force . " dégat ! <br>";
-        echo $this->getNom() .  "a maintenant " . $cible->getPv(). " points de vie. <br><br>"
+        echo $this->getNom() .  " a maintenant " . $cible->getPv() . " points de vie. <br><br>";
     }
 }
