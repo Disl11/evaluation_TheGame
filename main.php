@@ -1,10 +1,9 @@
 <?php
+
 require_once "Personnage.php";
 require_once "Humain.php";
 require_once "Orc.php";
 require_once "Elfe.php";
-require_once "GameEngine.php";
-
 
 
 
@@ -15,7 +14,6 @@ $game->addCombattant($humain1 = new Humain("Pierre"));
 $game->addCombattant($orc1 = new Orc("Nicolas"));
 
 $game->start();
-
 
 
 
