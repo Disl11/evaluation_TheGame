@@ -21,7 +21,7 @@ class GameEngine
     public function tourDeJeu(): void
     {
 
-        echo "Debut du  Battle  !!! <br> ";
+        echo "Debut du  Battle  !!! ⚔️ <br> ";
 
         while (!$this->fin()) {
 
@@ -41,12 +41,9 @@ class GameEngine
 
         echo  "Le Batlle est fini ! <br>";
 
-        if ($this->domeDuTonnere === 1) {
-            echo "il y pas de vainqeur";
-        } else {
-            $winner = reset($this->domeDuTonnere);
-            echo " Le vainqeur du battle est : " . $winner->getNom();
-        }
+        $winner = reset($this->domeDuTonnere);
+
+        echo " Le vainqeur du battle est : " . $winner->getNom() . "🏆";
     }
 
 
@@ -67,7 +64,7 @@ class GameEngine
     {
         foreach ($this->domeDuTonnere as $key => $warrior) {
             if ($warrior->getPv() <= 0) {
-                echo $warrior->getNom() . " est eliminé de l'aréne ! <br><br>";
+                echo $warrior->getNom() . " est eliminé de l'aréne ! 💀 <br><br>";
                 unset($this->domeDuTonnere[$key]);
             }
         }
