@@ -14,6 +14,8 @@ $game->addCombattant($elfe1 = new Elfe("Chloe"));
 $game->addCombattant($humain1 = new Humain("Pierre"));
 $game->addCombattant($orc1 = new Orc("Nicolas"));
 
+
+
 $game->start();
 
 
