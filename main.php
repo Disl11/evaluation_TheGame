@@ -10,16 +10,20 @@ require_once "Elfe.php";
 
 $game = new GameEngine();
 
-$game->addCombattant($elfe1 = new Elfe("Chloe"));
-$game->addCombattant($humain1 = new Humain("Pierre"));
-$game->addCombattant($orc1 = new Orc("Nicolas"));
 
 
+$elfe1 = new Elfe("chloe");
+$humain1 = new Humain("Pierre");
+$orc1 = new Orc("Nicolas");
+$orc2 = new Orc("Jean-claude");
+
+$game->addCombattant($elfe1, $humain1, $orc1, $orc2);
+
+// $game->addCombattant($elfe1 = new Elfe("Chloe"));
+// $game->addCombattant($humain1 = new Humain("Pierre"));
+// $game->addCombattant($orc1 = new Orc("Nicolas"));
 
 $game->start();
-
-
-
 
 
 

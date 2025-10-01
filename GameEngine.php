@@ -4,23 +4,22 @@ class GameEngine
 {
 
     private $domeDuTonnere = [];
-    private $tour = 0;
 
     public function addCombattant(Personnage ...$personnage): void
     {
 
-        // une boucle forach sur les personage reçu
+        // une boucle forach sur les personage reçu dans le tableau dome du tonnere
         foreach ($personnage as $p) {
             $this->domeDuTonnere[] = $p;
         }
 
-
-        //ajouter un combattant max 2 combattant
+        //ajouter un combattant max 2 combattant ( premier parti )
         // if (count($this->domeDuTonnere) < 2) {
         //     $this->domeDuTonnere[] = $p;
         // } else {
         //     echo "Maximun de combattant dans le dome du tonnere <br>";
         // }
+
     }
 
     public function start(): void
@@ -47,42 +46,19 @@ class GameEngine
     {
 
         // avoir 2 warrior 
-        // rucupere getJoueur()
-
-
+        // rucupere getJoueur() pour idattaquant et idcible
         //effectuer des actions a chaque tour
-        $this->tour++;
 
-        echo "Tour " . $this->tour . " : <br>";
+        $idAttaquant = $this->getId();
+        $attaquant = $this->getJoueur($idAttaquant);
 
+        do {
+            $idCible = $this->getId();
+        } while ($idCible === $idAttaquant);
 
-        $attaquantDuTour = [];
+        $cible = $this->getJoueur($idCible);
 
-
-        foreach ($this->domeDuTonnere as $attaquant) {
-
-            // verifier le joueur dans le tableau qui a jouer sur ce tour
-            if (in_array($attaquant, $attaquantDuTour, true))
-                continue;
-
-
-            // choisir une cible pour l'attaquant pour pas ce taper sur lui meme
-            $ciblePossible = array_filter($this->domeDuTonnere, function ($p) use ($attaquant) {
-                return $p !== $attaquant;
-            });
-
-            // si plus cible fin
-            if (empty($ciblePossible)) break;
-
-
-            // choisir  une cible au hasard
-            $cible = $ciblePossible[array_rand($ciblePossible)];
-
-            $attaquant->attaquer($cible);
-
-            // pour pas que un joueur re attaque a nouveau
-            $attaquantDuTour[] = $attaquant;
-        }
+        $attaquant->attaquer($cible);
 
         $this->nettoyerMort();
 
